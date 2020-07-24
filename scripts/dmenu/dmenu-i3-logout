@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# dmenu theming
+lines="-l 3"
+
+first_prompt="What do you want to do?"
+opt1="Logout\nReboot\nShutdown"
+opt2="Yes\nNo"
+
+
+ask() {
+    answer="$( echo -e $1 | dmenu -i -p "$2" $lines)"
+}
+
+ask "$opt1" "$first_prompt"
+
+case $answer in
+    "Logout")
+        ask "$opt2" "Do you really want to logout?"
+        if [[ $answer == "Yes" ]]; then
+            i3-msg exit
+        fi
+        exit 0
+        ;;
+    "Reboot")
+        ask "$opt2" "Do you really want to reboot the system?"
+        if [[ $answer == "Yes" ]]; then
+            systemctl reboot
+        fi
+        exit 0
+        ;;
+    "Shutdown")
+        ask "$opt2" "Do you really want to shutdown the computer?"
+        if [[ $answer == "Yes" ]]; then
+            systemctl poweroff
+        fi
+        exit 0
+        ;;
+esac
+
+exit 0

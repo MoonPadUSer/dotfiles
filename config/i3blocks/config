@@ -1,0 +1,120 @@
+#!/bin/bash
+# i3blocks config file
+#
+# Please see man i3blocks for a complete reference!
+# The man page is also hosted at http://vivien.github.io/i3blocks
+#
+# List of valid properties:
+#
+# align
+# color
+# command
+# full_text
+# instance
+# interval
+# label
+# min_width
+# name
+# separator
+# separator_block_width
+# short_text
+# signal
+# urgent
+
+# Global properties
+#
+# The top properties below are applied to every block, but can be overridden.
+# Each block command defaults to the script name to avoid boilerplate.
+command=/usr/share/i3blocks/$BLOCK_NAME
+separator_block_width=15
+markup=none
+
+# APT-UPGRADES
+[apt-upgrades]
+command=$SCRIPT_DIR/apt-upgrades
+interval=1800
+
+# EMAIL
+[email]
+command=$SCRIPT_DIR/email
+interval=300
+min_width=99
+
+# Volume indicator
+#
+# The first parameter sets the step (and units to display)
+# The second parameter overrides the mixer selection
+# See the script for details.
+[volume-pulseaudio]
+command=$SCRIPT_DIR/volume-pulseaudio
+interval=once
+signal=1
+
+[brightness]
+command=brightnessctl -d acpi_video0 get
+interval=once
+align=center
+signal=2
+
+# Disk usage
+[disk]
+color=#FF00FF
+label=HOME
+interval=30
+
+
+# Network interface monitoring for wlxd037458d55e3
+[ssid]
+color=#00FF00
+command=INTERFACE=wlxd037458d55e3 $SCRIPT_DIR/ssid
+interval=60
+
+# Network interface monitoring for wlan0
+[ssid]
+color=#00FF00
+command=INTERFACE=wlan0 $SCRIPT_DIR/ssid
+interval=60
+
+
+# CPU Temperature
+[temperature]
+color=#00F0FF
+interval=10
+separator=false
+
+# CPU usage
+[cpu_usage]
+align=center
+interval=10
+min_width=100.00%
+separator=true
+
+# Battery Indicator
+[battery2]
+color=#ECF542
+command=$SCRIPT_DIR/battery2
+markup=pango
+interval=30
+
+# Time
+[time]
+command=date '+%H:%M'
+interval=5
+
+# Date
+[time]
+command=date '+%d.%m.%Y'
+interval=3600
+
+# Generic media player support
+#[mediaplayer]
+#command=$SCRIPT_DIR/mediaplayer
+#instance=spotify
+#interval=5
+#signal=10
+
+# Keyboard Layout
+[xkb_layout]
+command=font=monospace font_weight=bold $SCRIPT_DIR/xkb_layout
+markup=pango
+interval=persist

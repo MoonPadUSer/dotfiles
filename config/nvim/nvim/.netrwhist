@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =3
+let g:netrw_dirhist_3='/home/moonpaduser/Blue Nebula/work_in_progress/redesign-profile-options'
+let g:netrw_dirhist_2='/home/moonpaduser/.screenlayout'
+let g:netrw_dirhist_1='/home/moonpaduser/.config/gxkb'

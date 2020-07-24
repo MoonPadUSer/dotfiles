@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+lines="-l 3"
+
+first_prompt="Select Monitor Configuration:"
+opt1="Internal Screen\nExternal Screen\nBoth Screens"
+opt2="Yes\nNo"
+
+ask() {
+  answer="$( echo -e $1 | dmenu -i -p "$2" $lines)"
+}
+
+ask "$opt1" "$first_prompt"
+
+case $answer in
+  "Internal Screen")
+    source ~/.screenlayout/internal_screen.sh
+    nitrogen --restore
+    exit 0
+    ;;
+  "External Screen")
+    source ~/.screenlayout/external_screen.sh
+    nitrogen --restore
+    exit 0
+    ;;
+  "Both Screens")
+    source ~/.screenlayout/both_screens.sh
+    nitrogen --restore
+    exit 0
+    ;;
+esac
+
+exit 0
